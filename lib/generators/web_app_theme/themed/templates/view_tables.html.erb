@@ -11,11 +11,11 @@
       <table class="table">
         <tr>             
           <th class="first">ID</th>
-          <% unless columns.empty? -%>
+          <%- columns.each do |column| -%>
           <th>
-            <%%= t("activerecord.attributes.<%= singular_controller_routing_path %>.<%= columns.first.name %>", :default => t("activerecord.labels.<%= columns.first.name %>", :default => "<%= columns.first.name.capitalize %>")) %>
+            <%%= t("activerecord.attributes.<%= singular_controller_routing_path %>.<%= column.name %>", :default => t("activerecord.labels.<%= column.name %>", :default => "<%= column.name.capitalize %>")) %>
           </th>
-          <% end -%>
+          <%- end -%>
           <th><%%= t("web-app-theme.created_at", :default => "Created at")  %></th>
           <th class="last">&nbsp;</th>
         </tr>
@@ -24,13 +24,13 @@
           <td>
             <%%= <%= resource_name %>.id %>
           </td>
-          <% unless columns.empty? -%>
+          <%- columns.each do |column| -%>
           <td>
-            <%%= link_to <%= resource_name %>.<%= columns.first.name %>, <%= singular_controller_routing_path %>_path(<%= resource_name %>) %>
+            <%%= <%= resource_name %>.<%= column.name %> %>
           </td>
-          <% end -%>
+          <%- end -%>
           <td>
-            <%%= <%= resource_name %>.created_at %>
+            <%%= <%= resource_name %>.created_at %> 
           </td>
           <td class="last">
             <%%= link_to "#{t("web-app-theme.show", :default => "Show")}", <%= singular_controller_routing_path %>_path(<%= resource_name %>) %> |
